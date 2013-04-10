@@ -8,21 +8,36 @@
 
 #import "no320_http_base.h"
 
+
+@implementation no320_http_base_api_json
+
+-(id) init{
+    if (self = [super init]) {
+        self.delegate = self;
+    }
+    return self;
+}
+
+-(NSString *) get_base_url_string{
+    return @"";
+}
+
+-(void) set_request_info{
+    [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
+    
+    // Accept HTTP Header; see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.1
+	[self setDefaultHeader:@"Accept" value:@"application/json"];
+    [self setDefaultHeader:@"Accept" value:@"text/html"];
+}
+
+
+@end
+
 @implementation no320_http_base
 
-//@synthesize delegate;
+@synthesize delegate;
 
-//+ (no320_http_base *)sharedClient{
-//    static no320_http_base *_sharedClient = nil;
-//    static dispatch_once_t oncePredicate;
-//    dispatch_once(&oncePredicate, ^{
-//        _sharedClient = [[self alloc] init];
-//    });
-//    
-//    return _sharedClient;
-//}
 
-SINGLETON_FOR_CLASS(no320_http_base)
 
 - (id)init
 {
@@ -44,16 +59,21 @@ SINGLETON_FOR_CLASS(no320_http_base)
 
 -(NSString *)get_base_url_string
 {
-//    if ([delegate respondsToSelector:@selector(get_base_url_string)]) {
-//        return [delegate get_base_url_string];
-//    }else{
-//        assert(@"fails");
-//    }
+    if ([delegate respondsToSelector:@selector(get_base_url_string)]) {
+        return [delegate get_base_url_string];
+    }else{
+        assert(@"fails");
+    }
+    return @"";
 }
 
 
 -(void) set_request_info{
-    
+    if ([delegate respondsToSelector:@selector(set_request_info)]) {
+        [delegate set_request_info];
+    }else{
+        assert(@"fails");
+    }
 }
 
 

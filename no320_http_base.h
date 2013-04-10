@@ -10,7 +10,7 @@
 #import "AFNetworking.h"
 
 
-@protocol no320_http_base_get_protocol <NSObject>
+@protocol no320_http_base_protocol <NSObject>
 
 @required
 -(NSString *) get_base_url_string;
@@ -19,16 +19,14 @@
 @end
 
 
+@interface no320_http_base : AFHTTPClient
 
-@interface no320_http_base_get: AFHTTPClient <no320_http_base_get_protocol>
+@property(nonatomic,assign,readwrite) id<no320_http_base_protocol> delegate;
 
 @end
 
 
-@interface no320_http_base : AFHTTPClient
 
-SINGLETON_FOR_HEADER(no320_http_base)
-
-//@property(nonatomic,assign,readwrite) id<no320_http_base_get_protocol> delegate;
+@interface no320_http_base_api_json: no320_http_base <no320_http_base_protocol>
 
 @end
