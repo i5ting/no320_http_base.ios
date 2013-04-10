@@ -71,8 +71,6 @@ no320_http_base采用策略模式
 用法都差不多，只有单例写法有差异
 
    [[BaiduApi2 sharedBaiduApi2] getPath:@"search" parameters:[NSDictionary dictionaryWithObject:@"2" forKey:@"pageno"]  success:^(AFHTTPRequestOperation *operation, id JSON) {
-        
-        
         NSArray *f = [JSON objectFromJSONData];
         NSMutableArray *r = [NSMutableArray array];
         
@@ -83,12 +81,8 @@ no320_http_base采用策略模式
                 if ([[ddd objectForKey:@"image"] length]>0) {
                     [r addObject:ddd];
                 }
-                
             }
         }
-        
-        
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
