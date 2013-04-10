@@ -93,5 +93,11 @@ no320_http_base采用策略模式
         
     }];
     
-    
-    
+
+## 使用说明
+
+不要把demo加到项目中,只需要
+
+- no320_http_base.h
+- no320_http_base.m
+
